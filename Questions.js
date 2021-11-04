@@ -1,5 +1,11 @@
-var geographyQ = [];
-var geographyA = [];
+var eGeographyQ = ['fujire',"wjæ","djfios","wdjio"];
+var eGeographyA = [];
+
+var mGeographyQ = [];
+var mGeographyA = [];
+
+var hGeographyQ = [];
+var hGeographyA = [];
 
 var MathsQ = [];
 var MathsA = [];
