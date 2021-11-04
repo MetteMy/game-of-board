@@ -1,8 +1,8 @@
 var geographyQ = [];
 var geographyA = [];
 
-var MathQ = [];
-var MathA = [];
+var MathsQ = [];
+var MathsA = [];
 
 var popcultureQ = [];
 var popcultureA = [];
