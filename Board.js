@@ -10,14 +10,16 @@ function setup() {
     background(220);
     noStroke();
     rectMode(CENTER);
+    textAlign(CENTER);
     y = height / 2;
     drawBoard();
-    //Terning
-    button = createButton('Terning');
+    //Dice
+    button = createButton('Dice');
     button.position(10, 10);
     button.size(70, 70);
     button.mousePressed(die);
 }
+
 
 function die() {
     push();
@@ -31,8 +33,33 @@ function die() {
     player1 = squareX[moves];
     drawBoard();
     circle(player1, y, 30, 30);
+    if (moves >= 20){
+        console.log("you won!!!");
+        background(220)
+        text("The Game is over. Player1 is the winner!", width/2, height/2);
 
+    }
+    giveQuestion()
+    rect(width/2,120, 400,200);
+    let question = parseInt(random(0, eGeographyQ.length));
+    console.log(question);
+    
+    text(eGeographyQ[question],width/2,120);
+    answerBtn = createButton('Answer');
+    answerBtn.position(width/2, 140);
+    answerBtn.mousePressed(function() {text(eGeographyA[question], width/2, 180)});
+    //Husk at fjerne spørgsmål når de er brugt 
+        
+    
 }
+function getAnswer() {
+    text(eGeographyA[question], width/2, 180);
+}
+
+
+
+
+
 function drawBoard() {
     for (let i = 0; i < 20; i++) {
         color = i % 4;
@@ -44,6 +71,10 @@ function drawBoard() {
     }
 }
 
+
+function giveQuestion() {
+    
+}
 function draw() {
 
 }
