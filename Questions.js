@@ -14,8 +14,12 @@ let eMA = [];
 var eMathsQ = ["1+2=","3+3=" ];
 var eMathsA = ["3", "6"];
 
-var popcultureQ = [];
-var popcultureA = [];
+let ePQ = [];
+let ePA = [];
+var epopcultureQ = [];
+var epopcultureA = [];
 
-var randomQ = [];
-var randomA = [];
+let eRQ = [];
+let eRA = [];
+var erandomQ = [];
+var erandomA = [];
