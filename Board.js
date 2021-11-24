@@ -4,13 +4,15 @@ let players = [];
 let squareX = [];
 let colors = ["red", "yellow", "green", "purple"];
 let color;
+let playerColors = ["white", "darkgreen", "blue", "pink", "indigo"];
 //let moves = 0;
 let gameOver;
 let category = [];
 let answer = [];
-let button;
+let diceBtn;
 let answerBtn;
 let turns;
+let playerSelect;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -20,32 +22,49 @@ function setup() {
     textAlign(CENTER);
     textSize(20);
     gameOver = false;
-    y = height / 2;
-    button = createButton('Dice');
+    //y = height / 2;
+    diceBtn = createButton('Dice');
     answerBtn = createButton('Answer');
-    drawBoard();
-    players.push(new Player("blue", "blue", height / 2 - 20));
-    players.push(new Player("Pink", "pink", height/ 2 + 20));
+    correctAnswBtn = createButton('Correct answer');
+    wrongAnswBtn = createButton('Wrong answer');
+    startGameBtn = createButton('startgame');
+    playerSelect = createSelect(); 
+    playerSelect.option('1');
+    playerSelect.option('2');
+    playerSelect.option('3');
+    playerSelect.option('4');
+    playerSelect.option('5');
+    playerSelect.position(width/2,20);
     turns = 0;
-    for (let i = 0; i < players.length; i++) {
-        players[i].display();
+    startGameBtn.position(width/2, height/2);
+    diceBtn.hide();
+    startGameBtn.mousePressed(function(){
+    startGameBtn.hide();
+    diceBtn.show();
+    
+    for (let i = 0; i < playerSelect.value(); i++) {
+        players.push(new Player(playerColors[i], playerColors[1], height / 2 + 40 * players.length));
         
     }
     
+    //players.push(new Player("Pink", "pink", height / 2 + 20));
+    console.log(players);
+    drawBoard();
 
+    })
 
     //Dice
-    button.position(10, 10);
-    button.size(70, 70);
-    button.mousePressed(function () {
-        turns = turns + 1; // changes whoose turn it is
-        console.log("turns: "+turns);
+    diceBtn.position(10, 10);
+    diceBtn.size(70, 70);
+    diceBtn.mousePressed(function () {
+        //turns = turns + 1; // changes whoose turn it is
+        console.log("turns: " + turns);
         for (let i = 0; i < players.length; i++) {
             if (turns % players.length === i) {
                 players[i].die();
 
             }
-            
+
         }
 
     });
@@ -57,18 +76,20 @@ function setup() {
 }
 
 function drawBoard() {
-    
+
     for (let i = 0; i < 20; i++) {
         color = i % 4;
         push();
         fill(colors[color]);
-        rect(width / 20 * i + 32, y, 50, 50);
+        rect(width / 20 * i + 32, height/2 + 40*(players.length -1), 50, 40 * players.length);
         squareX.push(width / 20 * i + 32);
         pop();
     }
+
     for (let i = 0; i < players.length; i++) {
         players[i].display();
-        
+        console.log("players at drawboard: "+players);
+
     }
 }
 
@@ -84,7 +105,7 @@ class Player {
         this.moves = 0;
         this.player = squareX[this.moves];
         this.playercolor = playercolor;
-        
+
         this.playername = playername;
         this.y = y;
         this.dieMoves;
@@ -95,13 +116,13 @@ class Player {
         fill(this.playercolor);
         circle(this.player, this.y, 30, 30);
         pop();
+
     }
     move() {
         this.moves += this.dieMoves;
         this.player = squareX[this.moves];
-        console.log("this.moves: "+this.moves);
-        console.log("this.player: "+this.player);
-        background(this.playercolor);
+        console.log("this.moves: " + this.moves);
+        console.log("this.player: " + this.player);
         drawBoard();
         this.display();
         this.giveQuestion()
@@ -109,27 +130,31 @@ class Player {
     die() {
         push();
         fill(220);
-        rect(90, 50, 20, 20);
+        rect(90, 30, 20, 80);
         pop();
         this.dieMoves = parseInt(random(1, 7));
-        
+
         this.move();
         text(this.dieMoves, 90, 50);
 
         if (this.moves >= 20) {
             console.log("you won!!!");
             background(220);
-            text("The Game is over. "+this.playername+" is the winner!", width / 2, height / 2);
-            button.hide();
+            text("The Game is over. " + this.playername + " is the winner!", width / 2, height / 2);
+            diceBtn.hide();
             answerBtn.hide();
+            wrongAnswBtn.hide();
+            correctAnswBtn.hide();
             gameOver = true;
 
         }
     }
     giveQuestion() {
         if (gameOver === false) {
+            
+            console.log(this.playercolor);
             rect(width / 2, 120, 400, 200);
-
+           
             if (this.moves % 4 === 0) {
                 // math 
                 category = eMQ;
@@ -151,7 +176,7 @@ class Player {
                 answer = ["popcultureA"];
             }
             let question = parseInt(random(0, category.length));
-            console.log("question number: " +question);
+            console.log("question number: " + question);
             text(category[question], width / 2, 120);
             answerBtn.show();
             answerBtn.position(width / 2 - 30, 140);
@@ -162,6 +187,23 @@ class Player {
                 answerBtn.hide();
                 console.log("category: " + category);
                 console.log("answer: " + answer);
+                correctAnswBtn.position(width / 2 + 30, 140);
+                wrongAnswBtn.position(width / 2 - 130, 140);
+                correctAnswBtn.show();
+                wrongAnswBtn.show();
+
+            });
+            wrongAnswBtn.mousePressed(function () {
+
+                turns += 1;
+                wrongAnswBtn.hide();
+                correctAnswBtn.hide();
+                
+            });
+
+            correctAnswBtn.mousePressed(function () {
+                wrongAnswBtn.hide();
+                correctAnswBtn.hide();
 
             });
 
