@@ -28,28 +28,28 @@ function setup() {
     correctAnswBtn = createButton('Correct answer');
     wrongAnswBtn = createButton('Wrong answer');
     startGameBtn = createButton('startgame');
-    playerSelect = createSelect(); 
+    playerSelect = createSelect();
     playerSelect.option('1');
     playerSelect.option('2');
     playerSelect.option('3');
     playerSelect.option('4');
     playerSelect.option('5');
-    playerSelect.position(width/2,20);
+    playerSelect.position(width / 2, 20);
     turns = 0;
-    startGameBtn.position(width/2, height/2);
+    startGameBtn.position(width / 2, height / 2);
     diceBtn.hide();
-    startGameBtn.mousePressed(function(){
-    startGameBtn.hide();
-    diceBtn.show();
-    
-    for (let i = 0; i < playerSelect.value(); i++) {
-        players.push(new Player(playerColors[i], playerColors[1], height / 2 + 40 * players.length));
-        
-    }
-    
-    //players.push(new Player("Pink", "pink", height / 2 + 20));
-    console.log(players);
-    drawBoard();
+    startGameBtn.mousePressed(function () {
+        startGameBtn.hide();
+        diceBtn.show();
+
+        for (let i = 0; i < playerSelect.value(); i++) {
+            players.push(new Player(playerColors[i], playerColors[1], height / 2 + 40 * players.length));
+
+        }
+
+        //players.push(new Player("Pink", "pink", height / 2 + 20));
+        console.log(players);
+        drawBoard();
 
     })
 
@@ -81,14 +81,14 @@ function drawBoard() {
         color = i % 4;
         push();
         fill(colors[color]);
-        rect(width / 20 * i + 32, height/2 + 40*(players.length -1), 50, 40 * players.length);
+        rect(width / 20 * i + 32, height / 2 + 40 * (players.length - 1), 50, 40 * players.length);
         squareX.push(width / 20 * i + 32);
         pop();
     }
 
     for (let i = 0; i < players.length; i++) {
         players[i].display();
-        console.log("players at drawboard: "+players);
+        console.log("players at drawboard: " + players);
 
     }
 }
@@ -151,10 +151,10 @@ class Player {
     }
     giveQuestion() {
         if (gameOver === false) {
-            
+
             console.log(this.playercolor);
             rect(width / 2, 120, 400, 200);
-           
+
             if (this.moves % 4 === 0) {
                 // math 
                 category = eMQ;
@@ -198,7 +198,7 @@ class Player {
                 turns += 1;
                 wrongAnswBtn.hide();
                 correctAnswBtn.hide();
-                
+
             });
 
             correctAnswBtn.mousePressed(function () {
