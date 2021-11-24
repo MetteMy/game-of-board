@@ -8,9 +8,9 @@ var mGeographyA = ["Vanuatu, Venezuela or Vietnam", "Canada", "Helsinki", "Malay
 
 var hGeographyQ = ["How many countries exist officially?", "Which country has the biggest number of neighbouring countries?", "Name the capital of Australia?", "Name a country with 8 neighbouring countries", "How many countries in the EU?", "What country is the smallest in the world?", "Country furthest from Denmark?", "Name the country with the longest coastline?", "What country is the least populated in the world?", "Lomé is the capital of…?"];
 var hGeographyA = ["195", "Russia (with 16)", "Canberra", "France, Austria, Turkey, Serbia, Tanzania or Zambia", "27", "Vatican City", "New Zealand", "Canada", "Vatican City (about 800 people)", "Togo"];
-""
-var eMathsQ = ["2+5","9-4","2∙3","4/2","10∙2","3∙4","17+5","23+8","41-17","32-9"];
-var eMathsA = ["7","5","6","2","20","12","22","31","24","23"];
+
+var eMathsQ = ["2+5", "9-4", "2∙3", "4/2", "10∙2", "3∙4", "17+5", "23+8", "41-17", "32-9"];
+var eMathsA = ["7", "5", "6", "2", "20", "12", "22", "31", "24", "23"];
 
 var mMathsQ = [];
 var mMathsA = [];
