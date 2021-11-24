@@ -28,7 +28,6 @@ function setup() {
     wrongAnswBtn = createButton('Wrong answer');
     startGameBtn = createButton('startgame');
     playerSelect = createSelect();
-    startGameBtn.size(200, 30);
     playerSelect.option('1');
     playerSelect.option('2');
     playerSelect.option('3');
@@ -36,7 +35,8 @@ function setup() {
     playerSelect.option('5');
     playerSelect.position(width / 2, 20);
     turns = 0;
-    startGameBtn.position(width / 2, height / 2);
+    startGameBtn.size(100, 30);
+    startGameBtn.position((width / 2) - 30, height / 2);
     diceBtn.hide();
     correctAnswBtn.hide();
     wrongAnswBtn.hide();
