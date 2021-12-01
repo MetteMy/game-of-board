@@ -173,8 +173,8 @@ class Player {
             }
             if (this.moves % 4 === 3) {
                 // popculture
-                category = ["popcultureQ"];
-                answer = ["popcultureA"];
+                category = ePopcultureQ;
+                answer = ePopcultureA;
             }
             let question = parseInt(random(0, category.length));
             console.log("question number: " + question);
