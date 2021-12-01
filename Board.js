@@ -27,8 +27,8 @@ function setup() {
     correctAnswBtn = createButton('Correct answer');
     wrongAnswBtn = createButton('Wrong answer');
     startGameBtn = createButton('startgame');
-    playerSelect = createSelect();
-    playerSelect.option('1');
+    playerSelect = createSelect(); 
+    startGameBtn.size(200,30);
     playerSelect.option('2');
     playerSelect.option('3');
     playerSelect.option('4');
@@ -41,16 +41,17 @@ function setup() {
     correctAnswBtn.hide();
     wrongAnswBtn.hide();
     answerBtn.hide();
-    startGameBtn.mousePressed(function () {
-        startGameBtn.hide();
-        diceBtn.show();
-        drawBoard();
-        for (let i = 0; i < playerSelect.value(); i++) {
-            players.push(new Player(playerColors[i], playerColors[i], height / 2 + 40 * i));
-        }
-        console.log(players);
-
-        drawBoard();
+    startGameBtn.mousePressed(function(){
+    playerSelect.hide();
+    startGameBtn.hide();
+    diceBtn.show();
+    drawBoard();
+    for (let i = 0; i < playerSelect.value(); i++) {
+        players.push(new Player(playerColors[i], playerColors[i], height / 3 * 2 + 40 * i));
+    }
+    console.log(players);
+    
+    drawBoard();
 
 
     })
@@ -83,7 +84,7 @@ function drawBoard() {
         color = i % 4;
         push();
         fill(colors[color]);
-        rect(width / 20 * i + 32, height / 2, 50, 40 * players.length);
+        rect(width / 20 * i + 32, height, 50, 450);
         squareX.push(width / 20 * i + 32);
         pop();
     }
@@ -152,7 +153,6 @@ class Player {
     }
     giveQuestion() {
         if (gameOver === false) {
-
             console.log(this.playercolor);
             rect(width / 2, 120, 400, 200);
 
