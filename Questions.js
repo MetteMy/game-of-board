@@ -18,14 +18,14 @@ var mMathsA = ["117", "", "", "", "", "", "", "", "", ""];
 var hMathsQ = ["144/32", "", "", "", "", "", "", "", "", ""];
 var hMathsA = ["4.5", "", "", "", "", "", "", "", "", ""];
 
-var ePopcultureQ = ["", "", "", "", "", "", "", "", "", ""];
-var ePopcultureA = ["", "", "", "", "", "", "", "", "", ""];
+var ePopcultureQ = ["What does Hakuna Matata mean?", "What movie in 2019 (not adjusted for inflation) topped Avatar as the highest-grossing film of all time?", "Which tech entrepreneur wanted to name his son X Æ A-12?", "Which country is ABBA from?", "Who has the hit singles “Perfect” and “Shape of You”?", "Who were the lead actors in the movie Twilight?", "Which movies is the line “Life is like a box of chocolate” from?", "What famous Christmas song is Mariah Carey known for?", "", ""];
+var ePopcultureA = ["No worries", "Avengers: Endgame", "Elon Musk", "Sweden", "Ed Sheeran", "Robert Pattinson and Kristen Stewart", "Forrest Gump", "All I Want for Christmas Is You", "", ""];
 
-var mPopcultureQ = ["What is the real name of Joe Exotic (Tiger King)?", "", "", "", "", "", "", "", "", ""];
-var mPopcultureA = ["Joseph Allen Maldonado-Passage", "", "", "", "", "", "", "", "", ""];
+var mPopcultureQ = ["What is the name of Ariel and Prince Eric’s daughter?", "Which Disney Princess sings “Once Upon a Dream”?", "What was the first Pixar movie?", "Who was the drummer for The Beatles?", "How many movies are there in the film series The Godfather?", "How many movies has Tom Hanks been in?", "How many ghosts are there in A Christmas Carol?", "What is Tim Burton’s 1993 famous Christmas movie?", "What company has used Santa Claus in its advertisements every year since 1931?", "Black Panther starred which famous actor?"];
+var mPopcultureA = ["Princess Melody", "Aurora (Sleeping Beauty)", "Toy Story", "Ringo Starr", "3", "More than 72", "Four (Christmas Past, Christmas Present, Christmas Future & Jacob Marley)", "The Nightmare Before Christmas", "Coca-Cola", "Chadwick Boseman"];
 
-var hPopcultureQ = ["", "", "", "", "", "", "", "", "", ""];
-var hPopcultureA = ["", "", "", "", "", "", "", "", "", ""];
+var hPopcultureQ = ["What is the real name of Joe Exotic (Tiger King)?", "How many kids does Angelina Jolie have?", "What year did Disneyland open?", "What is the name of Wendy’s dog in Peter Pan?", "How many brothers does Prince Hans of the Southern Isles have in Frozen?", "What was the first music video played on MTV?", "What was Freddie Mercury’s real name?", "Which movie (adjusted for inflation) is the highest-grossing movie to date?", "", ""];
+var hPopcultureA = ["Joseph Allen Maldonado-Passage", "6", "1955", "Nana", "12", "Video Killed the Radio Star", "Frederick Bulsara", "Gone with the Wind", "", ""];
 
 var eRandomQ = ["", "", "", "", "", "", "", "", "", ""];
 var eRandomA = ["", "", "", "", "", "", "", "", "", ""];
