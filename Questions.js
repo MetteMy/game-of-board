@@ -21,8 +21,8 @@ var hMathsA = ["4.5", "", "", "", "", "", "", "", "", ""];
 var ePopcultureQ = ["", "", "", "", "", "", "", "", "", ""];
 var ePopcultureA = ["", "", "", "", "", "", "", "", "", ""];
 
-var mPopcultureQ = ["", "", "", "", "", "", "", "", "", ""];
-var mPopcultureA = ["", "", "", "", "", "", "", "", "", ""];
+var mPopcultureQ = ["What is the real name of Joe Exotic (Tiger King)?", "", "", "", "", "", "", "", "", ""];
+var mPopcultureA = ["Joseph Allen Maldonado-Passage", "", "", "", "", "", "", "", "", ""];
 
 var hPopcultureQ = ["", "", "", "", "", "", "", "", "", ""];
 var hPopcultureA = ["", "", "", "", "", "", "", "", "", ""];
