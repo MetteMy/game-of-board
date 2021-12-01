@@ -1,11 +1,9 @@
-//let y;
-//let dieMoves;
+//Variabler oprettes
 let players = [];
 let squareX = [];
 let colors = ["red", "yellow", "green", "purple"];
 let color;
 let playerColors = ["white", "darkgreen", "blue", "pink", "indigo"];
-//let moves = 0;
 let gameOver;
 let category = [];
 let answer = [];
@@ -15,51 +13,57 @@ let turns;
 let playerSelect;
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth, windowHeight);//Canvas tilpasses til computeren
     background(220);
     noStroke();
-    rectMode(CENTER);
-    textAlign(CENTER);
+    rectMode(CENTER);//Firkanter tegnes fra midten
+    textAlign(CENTER);//Test er centeret
     textSize(20);
-    gameOver = false;
+    gameOver = false;//Sætter variabel til false
     //y = height / 2;
-    diceBtn = createButton('Dice');
-    answerBtn = createButton('Answer');
-    correctAnswBtn = createButton('Correct answer');
-    wrongAnswBtn = createButton('Wrong answer');
-    startGameBtn = createButton('startgame');
-    playerSelect = createSelect(); 
+    diceBtn = createButton('Dice');//Opretter knap: 'dice'
+    answerBtn = createButton('Answer');//Opretter knap: 'Answer'
+    correctAnswBtn = createButton('Correct answer');//Opretter knap: 'Correct answer'
+    wrongAnswBtn = createButton('Wrong answer');//Opretter knap: 'Wrong answer'
+    startGameBtn = createButton('startgame');//Opretter startknap: 'startgame'
+    playerSelect = createSelect(); //Opretter selcect bar
+    //Indsætter valgmuligheder for antal players
     playerSelect.option('1');
     playerSelect.option('2');
     playerSelect.option('3');
     playerSelect.option('4');
     playerSelect.option('5');
-    playerSelect.position(width/2,20);
-    turns = 0;
-    startGameBtn.position(width/2, height/2);
-    diceBtn.hide();
-    startGameBtn.mousePressed(function(){
-    startGameBtn.hide();
-    diceBtn.show();
+    playerSelect.position(width/2,20);//Placering for valg af antal spillere knap
+    turns = 0;//Der startes med ikke at være foretaget ture
+    startGameBtn.position(width/2, height/2);//Placering for start spil knap
+    diceBtn.hide();//'dice' kommer først frem når spillet starter
+    startGameBtn.mousePressed(function(){//Når der trykkes på 'startgame' sker følgene:
+    startGameBtn.hide();//'startgame' skjules
+    diceBtn.show();//'dice' kommer frem på skærmen
     
-    for (let i = 0; i < playerSelect.value(); i++) {
+    for (let i = 0; i < playerSelect.value(); i++) {//Inden for i=0 til det valgte antal spillere sker følgende
+        //Opretter spiller efter nedenstående objekt
+        //For hver player skal en farve vælges og y- værdi for position
+        //For loopet kører player antal, dvs. det antal playere spilelren har valgt
+        //Farven vælges efter farve array
+        //Position for y-værdi vælges til sidst
         players.push(new Player(playerColors[i], playerColors[1], height / 2 + 40 * players.length));
         
     }
     
     //players.push(new Player("Pink", "pink", height / 2 + 20));
     console.log(players);
-    drawBoard();
+    drawBoard();//Der kaldes til funktionen 'drawBorad' som er længere nede
 
     })
 
     //Dice
-    diceBtn.position(10, 10);
-    diceBtn.size(70, 70);
-    diceBtn.mousePressed(function () {
+    diceBtn.position(10, 10);//Angiver positionen for terning
+    diceBtn.size(70, 70);//Angiver terningens størrelse
+    diceBtn.mousePressed(function () {//Når der trykkes på terningen sker følgende:
         //turns = turns + 1; // changes whoose turn it is
         console.log("turns: " + turns);
-        for (let i = 0; i < players.length; i++) {
+        for (let i = 0; i < players.length; i++) {//Players.lenght angiver længden på arrayet
             if (turns % players.length === i) {
                 players[i].die();
 
@@ -75,19 +79,22 @@ function setup() {
 
 }
 
-function drawBoard() {
+function drawBoard() {//Funktion der tegner spillebrættet
 
-    for (let i = 0; i < 20; i++) {
-        color = i % 4;
-        push();
-        fill(colors[color]);
-        rect(width / 20 * i + 32, height/2 + 40*(players.length -1), 50, 40 * players.length);
-        squareX.push(width / 20 * i + 32);
-        pop();
+    for (let i = 0; i < 20; i++) {//Der tegnes 20 felter
+        color = i % 4;//"Resten" når der divideres med 4. Angiver hvilket felt brikken rykker til
+        push();//Det er kun det ene felt der bliver farvet
+        fill(colors[color]);//Arrayet hedder color. Derfor den første color
+        //Anden color angiver hvilket nummer i arrayet vi skal bruge (altså hvilken farve vi fylder med)
+        //Husk at color ovenover er defineret til at være lig med i%4
+        rect(width / 20 * i + 32, height/2 + 40*(players.length -1), 50, 40 * players.length);//Tegner feltet. Felternes højde varieres efter antal spillere
+        squareX.push(width / 20 * i + 32);//
+        pop();//Ender push
     }
 
-    for (let i = 0; i < players.length; i++) {
-        players[i].display();
+    for (let i = 0; i < players.length; i++) {//Loppet kører det antal gange som der er players.
+        //Length angiver længden af arrayet 'players'
+        players[i].display();//Henviser til metoden display som er længere nede
         console.log("players at drawboard: "+players);
 
     }
