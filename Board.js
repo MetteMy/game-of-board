@@ -1,9 +1,9 @@
 //Variabler oprettes
 let players = [];
 let squareX = [];
-let colors = ["red", "yellow", "green", "purple"];
+let colors = ["#FF595E", "#FFCA3A", "#8AC926", "#6A4C93"];
 let color;
-let playerColors = ["white", "darkgreen", "blue", "pink", "indigo"];
+let playerColors = ["#FF595E", "#FFCA3A", "#8AC926", "#6A4C93"];
 let gameOver;
 let category = [];
 let answer = [];
@@ -14,24 +14,26 @@ let playerSelect;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);//Canvas tilpasses til computeren
-    background(220);
-    noStroke();
+    background("#1982C4");
+    strokeWeight(2);
     rectMode(CENTER);//Firkanter tegnes fra midten
     textAlign(CENTER);//Test er centeret
     textSize(20);
     gameOver = false;//Sætter variabel til false
     //y = height / 2;
-    diceBtn = createButton('Dice');//Opretter knap: 'dice'
-    answerBtn = createButton('Answer');//Opretter knap: 'Answer'
-    correctAnswBtn = createButton('Correct answer');//Opretter knap: 'Correct answer'
-    wrongAnswBtn = createButton('Wrong answer');//Opretter knap: 'Wrong answer'
-    startGameBtn = createButton('startgame');//Opretter startknap: 'startgame'
-    playerSelect = createSelect(); //Opretter selcect bar
+    diceBtn = createButton('Dice').style('background-color', "white");;//Opretter knap: 'dice'
+    answerBtn = createButton('Answer').style('background-color', "white");;//Opretter knap: 'Answer'
+    correctAnswBtn = createButton('Correct answer').style('background-color', "#8AC926");;//Opretter knap: 'Correct answer'
+    wrongAnswBtn = createButton('Wrong answer').style('background-color', "#FF595E");;//Opretter knap: 'Wrong answer'
+    startGameBtn = createButton('startgame').style('background-color', "white");;//Opretter startknap: 'startgame'
+    playerSelect = createSelect().style('background-color', "white");; //Opretter selcect bar
     //Indsætter valgmuligheder for antal players
+    
     playerSelect.option('2');
     playerSelect.option('3');
     playerSelect.option('4');
     playerSelect.option('5');
+
 
 
     
@@ -59,7 +61,7 @@ function setup() {
         //For loopet kører player antal, dvs. det antal playere spilelren har valgt
         //Farven vælges efter farve array
         //Position for y-værdi vælges til sidst
-        players.push(new Player(playerColors[i], playerColors[i], height / 3 * 2 + 40 * i));
+        players.push(new Player(playerColors[i], "player"+ (i+1), height / 3 * 2 + 40 * i));
     }
     console.log(players);
     
@@ -120,6 +122,7 @@ function draw() {
 }
 
 class Player {
+
     constructor(playercolor, playername, y) {
         this.moves = 0;
         this.player = squareX[this.moves];
@@ -148,7 +151,8 @@ class Player {
     }
     die() {
         push();
-        fill(220);
+        noStroke();
+        fill("#1982C4");
         rect(90, 30, 20, 80);
         pop();
         this.dieMoves = parseInt(random(1, 7));
@@ -157,7 +161,7 @@ class Player {
 
         if (this.moves >= 20) {
             console.log("you won!!!");
-            background(220);
+            background("#1982C4");
             text("The Game is over. " + this.playername + " is the winner!", width / 2, height / 2);
             diceBtn.hide();
             answerBtn.hide();
@@ -170,8 +174,10 @@ class Player {
     giveQuestion() {
         if (gameOver === false) {
             console.log(this.playercolor);
+            push();
+            fill(this.playercolor);
             rect(width / 2, 120, 500, 250);
-
+            pop();
             if (this.moves % 4 === 0) {
                 // math 
                 category = eMQ;
