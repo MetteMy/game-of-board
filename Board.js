@@ -170,7 +170,7 @@ class Player {
     giveQuestion() {
         if (gameOver === false) {
             console.log(this.playercolor);
-            rect(width / 2, 120, 400, 200);
+            rect(width / 2, 120, 500, 250);
 
             if (this.moves % 4 === 0) {
                 // math 
