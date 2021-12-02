@@ -181,8 +181,8 @@ class Player {
             pop();
             if (this.moves % 4 === 0) {
                 // math 
-                category = eMathQ;
-                answer = eMathA;
+                category = eMathsQ;
+                answer = eMathsA;
             }
             if (this.moves % 4 === 1) {
                 // random
