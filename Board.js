@@ -1,9 +1,11 @@
 //Variabler oprettes
 let players = [];
 let squareX = [];
+//rød, gul, grøn, lilla
 let colors = ["#FF595E", "#FFCA3A", "#8AC926", "#6A4C93"];
 let color;
-let playerColors = ["#FF595E", "#FFCA3A", "#8AC926", "#6A4C93"];
+// rød, gul, grøn, lilla, blå
+let playerColors = ["#FF595E", "#FFCA3A", "#8AC926", "#6A4C93", "#1982C4"];
 let gameOver;
 let category = [];
 let answer = [];
@@ -14,8 +16,9 @@ let playerSelect;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);//Canvas tilpasses til computeren
-    background("#1982C4");
+    background("#1982C4");//blå
     strokeWeight(2);
+    
     rectMode(CENTER);//Firkanter tegnes fra midten
     textAlign(CENTER);//Test er centeret
     textSize(20);
@@ -150,6 +153,7 @@ class Player {
         this.giveQuestion()
     }
     die() {
+        diceBtn.hide();
         push();
         noStroke();
         fill("#1982C4");
@@ -176,7 +180,7 @@ class Player {
             console.log(this.playercolor);
             push();
             fill(this.playercolor);
-            rect(width / 2, 120, 500, 250);
+            rect(width / 2, 120, 1000, 250);
             pop();
             if (this.moves % 4 === 0) {
                 // math 
@@ -221,13 +225,13 @@ class Player {
                 turns += 1;
                 wrongAnswBtn.hide();
                 correctAnswBtn.hide();
-
+                diceBtn.show();
             });
 
             correctAnswBtn.mousePressed(function () {
                 wrongAnswBtn.hide();
                 correctAnswBtn.hide();
-
+                diceBtn.show();
             });
 
 
