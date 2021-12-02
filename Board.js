@@ -159,7 +159,7 @@ class Player {
         fill("#1982C4");
         rect(90, 30, 20, 80);
         pop();
-        this.dieMoves = parseInt(random(1, 7));
+        this.dieMoves = parseInt(random(1, 5));
         this.move();
         text(this.dieMoves, 90, 50);
 
