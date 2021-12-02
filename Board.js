@@ -90,10 +90,7 @@ function setup() {
         }
 
     });
-    eGQ = eGeographyQ;
-    eGA = eGeographyA;
-    eMQ = eMathsQ;
-    eMA = eMathsA;
+   
 
 }
 
@@ -184,18 +181,18 @@ class Player {
             pop();
             if (this.moves % 4 === 0) {
                 // math 
-                category = eMQ;
-                answer = eMA;
+                category = eMathQ;
+                answer = eMathA;
             }
             if (this.moves % 4 === 1) {
                 // random
-                category = ["randomQ"];
-                answer = ["randomA"];
+                category = eRandomQ;
+                answer = eRandomA;
             }
             if (this.moves % 4 === 2) {
                 // geo
-                category = eGQ;
-                answer = eGA;
+                category = eGeographyQ;
+                answer = eGeographyA;
             }
             if (this.moves % 4 === 3) {
                 // popculture
