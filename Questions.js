@@ -29,8 +29,8 @@ var mPopcultureA = ["Princess Melody", "Aurora (Sleeping Beauty)", "9", "Ringo S
 var hPopcultureQ = ["What is the real name of Joe Exotic (Tiger King)?", "How many kids does Angelina Jolie have?", "What year did Disneyland open?", "What is the name of Wendy’s dog in Peter Pan?", "How many brothers does Prince Hans of the Southern Isles have in Frozen?", "What was the first music video played on MTV?", "What was Freddie Mercury’s real name?", "Which movie (adjusted for inflation) is the highest-grossing movie to date?", "What was the first Pixar movie", "What year was Britney Spears’ album Oops!… I Did It Again released?"];
 var hPopcultureA = ["Joseph Allen Maldonado-Passage", "6", "1955", "Nana", "12", "Video Killed the Radio Star", "Frederick Bulsara", "Gone with the Wind", "Toy Story", "2000"];
 
-var eRandomQ = ["", "", "", "", "", "", "", "", "", ""];
-var eRandomA = ["", "", "", "", "", "", "", "", "", ""];
+var eRandomQ = ["How many hours in year?", "", "", "", "", "", "", "", "", ""];
+var eRandomA = ["About 8765.81277 hours", "", "", "", "", "", "", "", "", ""];
 
 var mRandomQ = ["", "", "", "", "", "", "", "", "", ""];
 var mRandomA = ["", "", "", "", "", "", "", "", "", ""];
