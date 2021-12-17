@@ -1,5 +1,11 @@
-let eGQ = [];
-let eGA = [];
+let mathsQ = [];
+let mathsA = [];
+let geographyQ = [];
+let geographyA = [];
+let popcultureQ = [];
+let popcultureA = [];
+let randomQ = [];
+let randomA = [];
 //Vi har lavet spørgsmål med forskellig sværhedsgrad, men kan ikke nå at implementere en mulighed for at vælge
 //sværhedsgrad, så 
 var eGeographyQ = ["What is the capital of Sweden?", "What is the capital of Norway?", "Which country is the biggest in the world?", "Copenhagen is the capital of…?", "What is the capital of Germany?", "Paris is the capital of…?", "Brussels is the capital of…?", "Athens is the capital of…?", "Which country is the best country?", "Which country is the most populated?"];

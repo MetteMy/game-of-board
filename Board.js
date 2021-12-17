@@ -13,6 +13,8 @@ let diceBtn;
 let answerBtn;
 let turns;
 let playerSelect;
+let difficultySelect;
+
 
 function setup() {
     createCanvas(windowWidth, windowHeight);//Canvas tilpasses til computeren
@@ -29,7 +31,7 @@ function setup() {
     correctAnswBtn = createButton('Correct answer').style('background-color', "#8AC926");;//Opretter knap: 'Correct answer'
     wrongAnswBtn = createButton('Wrong answer').style('background-color', "#FF595E");;//Opretter knap: 'Wrong answer'
     startGameBtn = createButton('startgame').style('background-color', "white");;//Opretter startknap: 'startgame'
-    playerSelect = createSelect().style('background-color', "white");; //Opretter selcect bar
+    playerSelect = createSelect().style('background-color', "white"); //Opretter selcect bar
     //Indsætter valgmuligheder for antal players
 
     playerSelect.option('2');
@@ -37,8 +39,12 @@ function setup() {
     playerSelect.option('4');
     playerSelect.option('5');
 
-
-
+    //question difficulty select
+    difficultySelect = createSelect().style('background-color', "white"); 
+    difficultySelect.option('easy');
+    difficultySelect.option('medium');
+    difficultySelect.option('hard');
+    difficultySelect.position(width / 2, 60);
 
     //players.push(new Player("Pink", "pink", height / 2 + 20));
     console.log(players);
@@ -54,6 +60,7 @@ function setup() {
     answerBtn.hide();
     startGameBtn.mousePressed(function () {//Når der trykkes på 'startgame' sker følgene:
         playerSelect.hide();
+        difficultySelect.hide();
         startGameBtn.hide();//'startgame' skjules
         diceBtn.show();//'dice' kommer frem på skærmen
         drawBoard();
@@ -66,6 +73,37 @@ function setup() {
             //Position for y-værdi vælges til sidst
             players.push(new Player(playerColors[i], "player" + (i + 1), height / 3 * 2 + 40 * i));
         }
+
+        if (difficultySelect.value() === 'easy'){
+        mathsQ = eMathsQ;
+        mathsA = eMathsA;
+        popcultureQ = ePopcultureQ;
+        popcultureA = ePopcultureA;
+        geographyQ = eGeographyQ;
+        geographyA = eGeographyA;
+        randomQ = eRandomQ;
+        randomA = eRandomA;
+        } 
+        if (difficultySelect.value() === 'medium'){
+            mathsQ = mMathsQ;
+            mathsA = mMathsA;
+            popcultureQ = mPopcultureQ;
+            popcultureA = mPopcultureA;
+            geographyQ = mGeographyQ;
+            geographyA = mGeographyA;
+            randomQ = mRandomQ;
+            randomA = mRandomA;
+        }
+        if (difficultySelect.value() === 'hard'){
+            mathsQ = hMathsQ;
+            mathsA = hMathsA;
+            popcultureQ = hPopcultureQ;
+            popcultureA = hPopcultureA;
+            geographyQ = hGeographyQ;
+            geographyA = hGeographyA;
+            randomQ = hRandomQ;
+            randomA = hRandomA;
+        }  
         console.log(players);
 
         drawBoard();
@@ -181,23 +219,23 @@ class Player {
             pop();
             if (this.moves % 4 === 0) {
                 // math 
-                category = eMathsQ;
-                answer = eMathsA;
+                category = mathsQ;
+                answer = mathsA;
             }
             if (this.moves % 4 === 1) {
                 // random
-                category = eRandomQ;
-                answer = eRandomA;
+                category = randomQ;
+                answer = randomA;
             }
             if (this.moves % 4 === 2) {
                 // geo
-                category = eGeographyQ;
-                answer = eGeographyA;
+                category = geographyQ;
+                answer = geographyA;
             }
             if (this.moves % 4 === 3) {
                 // popculture
-                category = ePopcultureQ;
-                answer = ePopcultureA;
+                category = popcultureQ;
+                answer = popcultureA;
             }
             let question = parseInt(random(0, category.length));
             console.log("question number: " + question);
@@ -218,7 +256,6 @@ class Player {
 
             });
             wrongAnswBtn.mousePressed(function () {
-
                 turns += 1;
                 wrongAnswBtn.hide();
                 correctAnswBtn.hide();
