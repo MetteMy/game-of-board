@@ -22,7 +22,7 @@ function setup() {
     strokeWeight(2);
 
     rectMode(CENTER);//Firkanter tegnes fra midten
-    textAlign(CENTER);//Test er centeret
+    textAlign(CENTER);//Test er centreret
     textSize(20);
     gameOver = false;//Sætter variabel til false
     //y = height / 2;
@@ -31,9 +31,9 @@ function setup() {
     correctAnswBtn = createButton('Correct answer').style('background-color', "#8AC926");;//Opretter knap: 'Correct answer'
     wrongAnswBtn = createButton('Wrong answer').style('background-color', "#FF595E");;//Opretter knap: 'Wrong answer'
     startGameBtn = createButton('startgame').style('background-color', "white");;//Opretter startknap: 'startgame'
-    playerSelect = createSelect().style('background-color', "white"); //Opretter selcect bar
+    playerSelect = createSelect().style('background-color', "white"); //Opretter select bar
+   
     //Indsætter valgmuligheder for antal players
-
     playerSelect.option('2');
     playerSelect.option('3');
     playerSelect.option('4');
