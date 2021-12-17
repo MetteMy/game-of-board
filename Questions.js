@@ -1,5 +1,11 @@
-let eGQ = [];
-let eGA = [];
+let mathsQ = [];
+let mathsA = [];
+let geographyQ = [];
+let geographyA = [];
+let popcultureQ = [];
+let popcultureA = [];
+let randomQ = [];
+let randomA = [];
 //Vi har lavet spørgsmål med forskellig sværhedsgrad, men kan ikke nå at implementere en mulighed for at vælge
 //sværhedsgrad, så 
 var eGeographyQ = ["What is the capital of Sweden?", "What is the capital of Norway?", "Which country is the biggest in the world?", "Copenhagen is the capital of…?", "What is the capital of Germany?", "Paris is the capital of…?", "Brussels is the capital of…?", "Athens is the capital of…?", "Which country is the best country?", "Which country is the most populated?", "Name a country starting with a V", "Which country has the longest coastline?", "What is the capital of Finland?", "Which country has the Kuala Lumpur as the capital?", "What is the capital of Spain?", "Name a country ending with the letter L", "Name the country with K as the last letter", "Name a country with the last letter M", "The capital of Canada is…?", "The Capital of Egypt is…?", "How many countries exist officially?", "Which country has the biggest number of neighbouring countries?", "Name the capital of Australia?", "Name a country with 8 neighbouring countries", "How many countries in the EU?", "What country is the smallest in the world?", "Country furthest from Denmark?", "Name the country with the longest coastline?", "What country is the least populated in the world?", "Lomé is the capital of…?"];
