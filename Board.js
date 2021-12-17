@@ -14,6 +14,9 @@ let answerBtn;
 let turns;
 let playerSelect;
 
+
+// er det her difficulty nu 
+
 function setup() {
     createCanvas(windowWidth, windowHeight);//Canvas tilpasses til computeren
     background("#1982C4");//blå
