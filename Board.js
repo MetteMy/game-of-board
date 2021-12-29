@@ -288,7 +288,7 @@ class Player {
                 console.log("answer at input check :" + answer[question].toLowerCase());
 
 
-                if (answer[question].toLowerCase().match(answerInput.value().toLowerCase())) {
+                if (answer[question].toLowerCase().match(answerInput.value().toLowerCase()) && answerInput.value().toLowerCase() != "") {
                     // if answer is correct
                     text("Correct, you can try again!", width / 2, 230);
                     diceBtn.show();
