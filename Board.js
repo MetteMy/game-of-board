@@ -24,16 +24,14 @@ function setup() {
     createCanvas(windowWidth, windowHeight);//Canvas tilpasses til computeren
     background("#1982C4");//blå
     strokeWeight(2);
-
     textSize(20);
-    gameOver = false;//Sætter variabel til false
+    gameOver = false;
+
 
     diceBtn = createButton('Dice').style('background-color', "white");//Opretter knap: 'dice'
     answerBtn = createButton('Answer').style('background-color', "white").position(width / 2, 160);//Opretter knap: 'Answer'
-    correctAnswBtn = createButton('Correct answer').style('background-color', "#8AC926").position(width / 2, 140);//Opretter knap: 'Correct answer'
-    wrongAnswBtn = createButton('Wrong answer').style('background-color', "#FF595E").position(width / 2, 140);//Opretter knap: 'Wrong answer'
     startGameBtn = createButton('startgame').style('background-color', "white");//Opretter startknap: 'startgame'
-    playerSelect = createSelect().style('background-color', "white"); //Opretter select
+    playerSelect = createSelect().style('background-color', "white");
     answerInput = createInput().size(70).position(width / 2, 140);
     //Indsætter valgmuligheder for antal players
 
@@ -41,7 +39,7 @@ function setup() {
     playerSelect.option('3');
     playerSelect.option('4');
     playerSelect.option('5');
-    playerSelect.position(width / 2, 160);//Placering for valg af antal spillere knap
+    playerSelect.position(width / 2, 160);
 
     //question difficulty select
     difficultySelect = createSelect().style('background-color', "white");
@@ -50,19 +48,28 @@ function setup() {
     difficultySelect.option('hard');
     difficultySelect.position(width / 2, 200);
 
-    
-    //console.log(players);
-    
 
-    
+
+
+
     turns = 0;//Der startes med ikke at være foretaget ture
     startGameBtn.size(100, 30);//Placering for start spil knap
     startGameBtn.position(width / 2, height / 2);
     diceBtn.hide();//'dice' kommer først frem når spillet starter
-    correctAnswBtn.hide();
-    wrongAnswBtn.hide();
     answerBtn.hide();
     answerInput.hide();
+    //Dice
+    diceBtn.position(10, 10);//Angiver positionen for terning
+    diceBtn.size(70, 70);//Angiver terningens størrelse
+    diceBtn.mousePressed(diceRoll);
+
+    document.addEventListener("keyup", function (event) {
+        if (diceBtn.style('display') == 'block') { // så man ikke kan trykke videre rundt om et spørgsmål
+            if (keyCode === RIGHT_ARROW) { // piletast fordi et bogstav ville udløses når man skriver svar
+                diceRoll();
+            }
+        }
+    });
     startGameBtn.mousePressed(function () {//Når der trykkes på 'startgame' sker følgene:
         playerSelect.hide();
         difficultySelect.hide();
@@ -78,58 +85,13 @@ function setup() {
             //Position for y-værdi vælges til sidst
             players.push(new Player(playerColors[i], "player" + (i + 1), height / 3 * 2 + 40 * i));
         }
-
-        if (difficultySelect.value() === 'easy') {
-            mathsQ = eMathsQ;
-            mathsA = eMathsA;
-            popcultureQ = ePopcultureQ;
-            popcultureA = ePopcultureA;
-            geographyQ = eGeographyQ;
-            geographyA = eGeographyA;
-            randomQ = eRandomQ;
-            randomA = eRandomA;
-        }
-        if (difficultySelect.value() === 'medium') {
-            mathsQ = mMathsQ;
-            mathsA = mMathsA;
-            popcultureQ = mPopcultureQ;
-            popcultureA = mPopcultureA;
-            geographyQ = mGeographyQ;
-            geographyA = mGeographyA;
-            randomQ = mRandomQ;
-            randomA = mRandomA;
-        }
-        if (difficultySelect.value() === 'hard') {
-            mathsQ = hMathsQ;
-            mathsA = hMathsA;
-            popcultureQ = hPopcultureQ;
-            popcultureA = hPopcultureA;
-            geographyQ = hGeographyQ;
-            geographyA = hGeographyA;
-            randomQ = hRandomQ;
-            randomA = hRandomA;
-        }
-        console.log(players);
-
+        populateCategory();
         drawBoard();
-
-
     })
 
-    //
 
-    //Dice
-    diceBtn.position(10, 10);//Angiver positionen for terning
-    diceBtn.size(70, 70);//Angiver terningens størrelse
-    diceBtn.mousePressed(diceRoll);
 
-    document.addEventListener("keyup", function (event) {
-        if (diceBtn.style('display') == 'block'){ // så man ikke kan trykke videre rundt om et spørgsmål
-           if (keyCode === RIGHT_ARROW) { // piletast fordi et bogstav ville udløses når man skriver svar
-            diceRoll();
-        }
-    }     
-    });
+    
     function diceRoll() {
 
         for (let i = 0; i < players.length; i++) {
@@ -160,13 +122,30 @@ function drawBoard() {//Funktion der tegner spillebrættet
     }
 
     for (let i = 0; i < players.length; i++) {//Loopet kører det antal gange som der er players.
-        
         players[i].display();//Henviser til metoden display som er længere nede
-        
+
     }
 }
 
+function populateCategory() {
+    if (difficultySelect.value() === 'easy'){        
+        var difficulty = "e";
+    }if (difficultySelect.value() === 'medium'){        
+        var difficulty = "m";
+    }
+    if (difficultySelect.value() === 'hard'){        
+        var difficulty = "h";
+    }
+    mathsQ = eval(difficulty+ "MathsQ"); // eval eksekvere en string
+    mathsA = eval(difficulty +"MathsA"); // fordi man ikke bare kan ligge fx e til MathsQ.
+    popcultureQ = eval(difficulty +"PopcultureQ");
+    popcultureA = eval(difficulty +"PopcultureA");
+    geographyQ =eval(difficulty +"GeographyQ");
+    geographyA =eval(difficulty +"GeographyA");
+    randomQ =eval(difficulty +"RandomQ");
+    randomA =eval(difficulty +"RandomA");
 
+}
 
 
 class Player {
@@ -175,7 +154,6 @@ class Player {
         this.moves = 0;
         this.player = squareX[this.moves];
         this.playercolor = playercolor;
-
         this.playername = playername;
         this.y = y;
         this.dieMoves;
@@ -186,12 +164,10 @@ class Player {
         fill(this.playercolor);
         circle(this.player, this.y, 30, 30);
         pop();
-
     }
     move() {
         this.moves += this.dieMoves;
         this.player = squareX[this.moves];
-        
         drawBoard();
         this.display();
         this.giveQuestion()
@@ -215,13 +191,11 @@ class Player {
             text("The Game is over. " + this.playername + " is the winner!", width / 2, height / 2);
             diceBtn.hide();
             answerBtn.hide();
-            wrongAnswBtn.hide();
-            correctAnswBtn.hide();
             answerInput.hide();
             gameOver = true;
 
         }
-     
+
     }
     giveQuestion() {
         if (gameOver === false) {
@@ -236,38 +210,21 @@ class Player {
             pop();
             if (this.moves % 4 === 0) {
                 // math 
-                findCategory(mathsQ,mathsA);
-                /*
-                category = mathsQ;
-                question = parseInt(random(0, mathsQ.length));
-                answer = mathsA;
-*/
+                findCategory(mathsQ, mathsA);
             }
             if (this.moves % 4 === 1) {
                 // random
-                findCategory(randomQ, randomA);/*
-                category = randomQ;
-                question = parseInt(random(0, randomQ.length));
-                answer = randomA;*/
+                findCategory(randomQ, randomA);
             }
             if (this.moves % 4 === 2) {
                 // geo
                 findCategory(geographyQ, geographyA);
-                /*
-                category = geographyQ;
-                question = parseInt(random(0, geographyQ.length));
-                answer = geographyA;*/
             }
             if (this.moves % 4 === 3) {
                 // popculture
                 findCategory(popcultureQ, popcultureA);
-                /*
-                category = popcultureQ;
-                question = parseInt(random(0, popcultureQ.length));
-                answer = popcultureA;*/
             }
 
-            //question = parseInt(random(0, category.length));
             console.log("question number: " + question);
             console.log("question: " + category[question]);
             text(category[question], width / 2, 120);
@@ -278,11 +235,12 @@ class Player {
 
             answerBtn.mousePressed(checkAnswer);
             document.addEventListener("keyup", function (event) {
+                if (answer != ""){
                 if (keyCode == 13) {
                     checkAnswer();
                     console.log("keycode is: " + keyCode);
-
                 }
+            }
 
             });
             function findCategory(queArr, ansArr) {
@@ -293,12 +251,7 @@ class Player {
 
             function checkAnswer() {
                 answerBtn.hide();
-                
                 text(answer[question], width / 2, 200);
-
-                //console.log("input :" + answerInput.value().toLowerCase());
-                //console.log("answer at input check :" + answer[question].toLowerCase());
-
 
                 if (answer[question].toLowerCase().match(answerInput.value().toLowerCase()) && answerInput.value().toLowerCase() != "") { // det sidste for at man ikke får korrekt ved ikke at skrive noget
                     // if answer is correct
@@ -306,47 +259,37 @@ class Player {
                     removeQuestion();
                     diceBtn.show();
                     console.log("the answer was correct");
-                    
-                    
+
+
                 } else {
                     text("incorrect, next player", width / 2, 230);
                     removeQuestion();
-                   
-                    console.log("this runs!!");
-                    console.log( "pop " + popcultureQ.length);
                     turns += 1;
                     diceBtn.show();
                 }
-                function removeQuestion(){
-                    console.log("question number(removeque): " + question);
+                function removeQuestion() {
+
                     if (category == mathsQ) {
-                        console.log("math: " + mathsQ.length + " answer: " + mathsA);
-                        mathsQ.splice(question,1);
-                        mathsA.splice(question,1);
-                        console.log("math: " + mathsQ.length + " answer: " + mathsA);
+                        mathsQ.splice(question, 1);
+                        mathsA.splice(question, 1);
                     }
                     if (category == randomQ) {
-                        console.log("math: " + mathsQ.length + " answer: " + mathsA);
-                        randomQ.splice(question,1);
-                        randomA.splice(question,1);
-                        console.log("random: " + randomQ.length + " answer: " + randomA);
+                        randomQ.splice(question, 1);
+                        randomA.splice(question, 1);
                     }
                     if (category == geographyQ) {
-                        console.log("math: " + mathsQ.length + " answer: " + mathsA);
-                        geographyQ.splice(question,1);
-                        geographyA.splice(question,1);
-                        console.log("geography: " + geographyQ.length + " answer: " + geographyA);
+                        geographyQ.splice(question, 1);
+                        geographyA.splice(question, 1);
                     }
                     if (category == popcultureQ) {
-                        console.log("math: " + mathsQ.length + " answer: " + mathsA);
-                        popcultureQ.splice(question,1);
-                        popcultureA.splice(question,1);
-                        console.log("popcul: " + popcultureQ.length + " answer: " + popcultureA);
+                        popcultureQ.splice(question, 1);
+                        popcultureA.splice(question, 1);
                     }
-                    answer = ""; // ellers skriver den flere svar oveni hinanden. 
-                   
+                    console.log("math: " + mathsQ.length + " rdm " + randomQ.length + " geo " + geographyQ + " pop " + popcultureQ);
+                    answer = ""; // ellers skriver den flere svar oven i hinanden. 
+
                 }
-                
+
 
             }
 
@@ -358,3 +301,4 @@ class Player {
     }
 
 }
+
