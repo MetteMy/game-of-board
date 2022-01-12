@@ -19,8 +19,8 @@ let question;
 
 
 function setup() {
-    rectMode(CENTER); //Firkanter tegnes fra midten
-    textAlign(CENTER); //Tekst er centeret
+    rectMode(CENTER); 
+    textAlign(CENTER);
     createCanvas(windowWidth, windowHeight);//Canvas tilpasses til computeren
     background("#1982C4");//blå
     strokeWeight(2);
@@ -28,19 +28,19 @@ function setup() {
     gameOver = false;
 
 
-    diceBtn = createButton('Dice').style('background-color', "white");//Opretter knap: 'dice'
-    answerBtn = createButton('Answer').style('background-color', "white").position(width / 2, 160);//Opretter knap: 'Answer'
-    startGameBtn = createButton('startgame').style('background-color', "white");//Opretter startknap: 'startgame'
+    diceBtn = createButton('Dice').style('background-color', "white");
+    answerBtn = createButton('Answer').style('background-color', "white").position(width / 2, 160);
+    startGameBtn = createButton('startgame').style('background-color', "white");
     playerSelect = createSelect().style('background-color', "white");
     answerInput = createInput().size(70).position(width / 2, 140);
-    //Indsætter valgmuligheder for antal players
+    
     playerSelect.option('2');
     playerSelect.option('3');
     playerSelect.option('4');
     playerSelect.option('5');
     playerSelect.position(width / 2, 160);
 
-    //question difficulty select
+    
     difficultySelect = createSelect().style('background-color', "white");
     difficultySelect.option('easy');
     difficultySelect.option('medium');
@@ -52,14 +52,14 @@ function setup() {
 
 
     turns = 0;//Der startes med ikke at være foretaget ture
-    startGameBtn.size(100, 30);//Placering for start spil knap
+    startGameBtn.size(100, 30);
     startGameBtn.position(width / 2, height / 2);
-    diceBtn.hide();//'dice' kommer først frem når spillet starter
+    diceBtn.hide();
     answerBtn.hide();
     answerInput.hide();
-    //Dice
-    diceBtn.position(10, 10);//Angiver positionen for terning
-    diceBtn.size(70, 70);//Angiver terningens størrelse
+    
+    diceBtn.position(10, 10);
+    diceBtn.size(70, 70);
     diceBtn.mousePressed(diceRoll);
 
     document.addEventListener("keyup", function (event) {
@@ -69,19 +69,15 @@ function setup() {
             }
         }
     });
-    startGameBtn.mousePressed(function () {//Når der trykkes på 'startgame' sker følgene:
+    startGameBtn.mousePressed(function () {
         playerSelect.hide();
         difficultySelect.hide();
-        startGameBtn.hide();//'startgame' skjules
-        diceBtn.show();//'dice' kommer frem på skærmen
+        startGameBtn.hide();
+        diceBtn.show();
         drawBoard();
 
-        for (let i = 0; i < playerSelect.value(); i++) {//Inden for i=0 til det valgte antal spillere sker følgende
-            //Opretter spiller efter nedenstående objekt
-            //For hver player skal en farve vælges og y- værdi for position
-            //For loopet kører player antal, dvs. det antal playere spilelren har valgt
-            //Farven vælges efter farve array
-            //Position for y-værdi vælges til sidst
+        for (let i = 0; i < playerSelect.value(); i++) {
+            //Player(farve, navn, y-koordinat)
             players.push(new Player(playerColors[i], "player" + (i + 1), height / 3 * 2 + 40 * i));
         }
         populateCategory();
@@ -265,6 +261,7 @@ class Player {
                     turns += 1;
                     diceBtn.show();
                 }
+
                 function removeQuestion() {
 
                     if (category == mathsQ) {
