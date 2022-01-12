@@ -135,12 +135,12 @@ function setup() {
 function drawBoard() {//Funktion der tegner spillebrættet
 
     for (let i = 0; i < 20; i++) {//Der tegnes 20 felter
-        color = i % 4;//"Resten" når der divideres med 4. Angiver hvilket felt brikken rykker til
+        color = i % 4;//Regner "resten" når der divideres med 4. Angiver hvilken type felt brikken rykker til
         push();//Det er kun det ene felt der bliver farvet
         fill(colors[color]);//Arrayet hedder color. Derfor den første color
         //Anden color angiver hvilket nummer i arrayet vi skal bruge (altså hvilken farve vi fylder med)
         //Husk at color ovenover er defineret til at være lig med i%4
-        rect(width / 20 * i + 32, height, 50, 450);//Tegner feltet. Felternes højde varieres efter antal spillere
+        rect(width / 20 * i + 32, height, 50, 450);//Tegner felterne
         squareX.push(width / 20 * i + 32);//
         pop();//Ender push
     }
