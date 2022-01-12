@@ -20,46 +20,43 @@ let question;
 
 function setup() {
     rectMode(CENTER); 
-    textAlign(CENTER);
+    textAlign(CENTER, CENTER);
     createCanvas(windowWidth, windowHeight);//Canvas tilpasses til computeren
     background("#1982C4");//blå
     strokeWeight(2);
     textSize(20);
     gameOver = false;
-
+    
 
     diceBtn = createButton('Dice').style('background-color', "white");
-    answerBtn = createButton('Answer').style('background-color', "white").position(width / 2, 160);
-    startGameBtn = createButton('startgame').style('background-color', "white");
-    playerSelect = createSelect().style('background-color', "white");
-    answerInput = createInput().size(70).position(width / 2, 140);
+    answerBtn = createButton('Answer').style('background-color', "white").size(70, 20).position((width / 2)-35, 165);
+    startGameBtn = createButton('startgame').style('background-color', "white").size(100, 40).position((width / 2)- 50, height / 2);
+    playerSelect = createSelect().style('background-color', "white").size(40, 20);
+    answerInput = createInput().size(140).position((width / 2)-70, 140);
     
     playerSelect.option('2');
     playerSelect.option('3');
     playerSelect.option('4');
     playerSelect.option('5');
-    playerSelect.position(width / 2, 160);
+    playerSelect.position((width / 2)-20, 190);
 
     
-    difficultySelect = createSelect().style('background-color', "white");
+    difficultySelect = createSelect().style('background-color', "white").size(70, 20);
     difficultySelect.option('easy');
     difficultySelect.option('medium');
     difficultySelect.option('hard');
-    difficultySelect.position(width / 2, 200);
+    difficultySelect.position((width / 2)-35, 240);
 
 
 
 
 
     turns = 0;//Der startes med ikke at være foretaget ture
-    startGameBtn.size(100, 30);
-    startGameBtn.position(width / 2, height / 2);
     diceBtn.hide();
     answerBtn.hide();
     answerInput.hide();
     
-    diceBtn.position(10, 10);
-    diceBtn.size(70, 70);
+    diceBtn.size(70, 70).position(10, 10);
     diceBtn.mousePressed(diceRoll);
 
     document.addEventListener("keyup", function (event) {
@@ -196,11 +193,11 @@ class Player {
             answerInput.value("");
             push();
             fill(this.playercolor);
-            rect(width / 2, 120, 1000, 250);
+            rect(width / 2, 120, 1000, 350);
             pop();
             push();
             fill(colors[this.moves % 4]);
-            rect(width / 2, 120, 900, 230);
+            rect(width / 2, 120, 900, 330);
             pop();
             if (this.moves % 4 === 0) {
                 // math 
