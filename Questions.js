@@ -6,8 +6,7 @@ let popcultureQ = [];
 let popcultureA = [];
 let randomQ = [];
 let randomA = [];
-//Vi har lavet spørgsmål med forskellig sværhedsgrad, men kan ikke nå at implementere en mulighed for at vælge
-//sværhedsgrad, så 
+//Vi har lavet spørgsmål med forskellig sværhedsgrad, hvilket spillerne har mulighed for at vælge inden spillet begynder
 var eGeographyQ = ["What is the capital of Sweden?", "What is the capital of Norway?", "Which country is the biggest in the world?", "Copenhagen is the capital of…?", "What is the capital of Germany?", "Paris is the capital of…?", "Brussels is the capital of…?", "Athens is the capital of…?", "Which country is the best country?", "Which country is the most populated?"];
 var eGeographyA = ["Stockholm", "Oslo", "Russia", "Denmark", "Berlin", "France", "Belgium", "Greece", "Denmark", "China"];
 
@@ -35,11 +34,11 @@ var mPopcultureA = ["Princess Melody", "Aurora (Sleeping Beauty)", "9", "Ringo S
 var hPopcultureQ = ["What is the real name of Joe Exotic (Tiger King)?", "How many kids does Angelina Jolie have?", "What year did Disneyland open?", "What is the name of Wendy's dog in Peter Pan?", "How many brothers does Prince Hans of the Southern Isles have in Frozen?", "What was the first music video played on MTV?", "What was Freddie Mercury's original name?", "Which movie (adjusted for inflation) is the highest-grossing movie to date?", "What was the first Pixar movie", "What year was Britney Spears' album Oops!… I Did It Again released?"];
 var hPopcultureA = ["Joseph Allen Maldonado-Passage", "6", "1955", "Nana", "12", "Video Killed the Radio Star", "Frederick Bulsara", "Gone with the Wind", "Toy Story", "2000"];
 
-var eRandomQ = ["How many hours in a day?", "What is the atomic symbol for iron?", "Who is the best teacher at Sukkertoppen? (in your opinion)", "What keeps going up, but never goes down?", "You own it, but other people use it more than you. What is it?", "What color is grass typically?", "Which 'gymnasie' is the best 'gymnasie'?", "How many seasons of Game of Thrones were made?", "Name a Disney Princess", "How mant minutes in an hour?"];
-var eRandomA = ["24", "Fe", "This is just an oppertunity to get plus point with whichever teacher (automatic right answer)", "Your age", "Your name", "Green", "Sukkertoppen gymnasie", "8", "Snow White, Cinderella, Aurora, Ariel, Belle, Jasmine, Pocahontas, Mulan, Tiana, Rapunzel, Merida, and Moana (and probably more tbh)", "60"];
+var eRandomQ = ["How many hours in a day?", "What is the atomic symbol for iron?", "what does lol mean?", "What keeps going up, but never goes down?", "You own it, but other people use it more than you. What is it?", "What color is grass typically?", "Which 'gymnasie' is the best 'gymnasie'?", "How many seasons of Game of Thrones were made?", "Name a Disney Princess", "How mant minutes in an hour?"];
+var eRandomA = ["24", "Fe", "Laughing out loud", "Your age", "Your name", "Green", "Sukkertoppen gymnasie", "8", "Snow White, Cinderella, Aurora, Ariel, Belle, Jasmine, Pocahontas, Mulan, Tiana, Rapunzel, Merida, and Moana (and probably more tbh)", "60"];
 
-var mRandomQ = ["How old is Mette Frederiksen?", "How many minutes in a day?", "How old is Donald Trump", "How many seconds in a hour", "How old is president Biden?", "What is Trump's middle name?", "What is a bibliokept?", "What is the 17th letter of the english alphabet?", "What does ttyl stand for?", ""];
-var mRandomA = ["44 years old", "1440", "75 years old", "3600", "79 years old", "John", "Someone who steals", "Q", "'talk to you later'", ""];
+var mRandomQ = ["How old is Mette Frederiksen?", "How many minutes in a day?", "How old is Donald Trump", "How many seconds in a hour", "How old is president Biden?", "What is Trump's middle name?", "What is a bibliokept?", "What is the 17th letter of the english alphabet?", "What does ttyl stand for?", "What does TIL mean?"];
+var mRandomA = ["44 years old", "1440", "75 years old", "3600", "79 years old", "John", "Someone who steals", "Q", "'talk to you later'", "Today I learned"];
 
-var hRandomQ = ["How many hours in year?", "The color magenta has which frequency on the color spectrum?", "When did the French revolution start?", "Name the best selling book in 2020", "Who sings These Boots Are Made For Walkin'?", "Name the best selling game in the US in 2020", "", "", "", ""];
-var hRandomA = ["About 8765.81277 hours", "None (it doesn't technically exist)", "5th of May 1789", "'A Promised Land' by Barack Obama", "Nancy Sinatra", "Call of Duty: Black Ops Cold War", "", "", "", ""];
+var hRandomQ = ["How many hours in year?", "The color magenta has which frequency on the color spectrum?", "When did the French revolution start?", "Name the best selling book in 2020", "Who sings These Boots Are Made For Walkin'?", "Name the best selling game in the US in 2020", "Name the best selling book in 2021", "Name the best selling movie in 2021", "Name the best selling movie in 2020", "Name the best selling album of 2021"];
+var hRandomA = ["About 8765.81277 hours", "None (it doesn't technically exist)", "5th of May 1789", "'A Promised Land' by Barack Obama", "Nancy Sinatra", "Call of Duty: Black Ops Cold War", "Dog Man: Mothering Heights", "Spider-Man: No Way Home", "Bad Boys For Life", "30 (by Adele)"];
