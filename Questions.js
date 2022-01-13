@@ -6,7 +6,8 @@ let popcultureQ = [];
 let popcultureA = [];
 let randomQ = [];
 let randomA = [];
-//Vi har lavet spørgsmål med forskellig sværhedsgrad og opdelt dem i kategorier. Spørgsmålet har samme placering i arrayet som det tilhørende svar.
+//Vi har lavet spørgsmål med forskellig sværhedsgrad og opdelt dem i kategorier. Spørgsmålet har samme placering i arrayet som det
+//tilhørende svar, og de forskellige arrays bliver kaldt ud fra hvilken sværhedsgrad der er valgt og hvilken kategori spillerne er 'på'
 var eGeographyQ = ["What is the capital of Sweden?", "What is the capital of Norway?", "Which country is the biggest in the world?", "Copenhagen is the capital of…?", "What is the capital of Germany?", "Paris is the capital of…?", "Brussels is the capital of…?", "Athens is the capital of…?", "Which country is the best country?", "Which country is the most populated?"];
 var eGeographyA = ["Stockholm", "Oslo", "Russia", "Denmark", "Berlin", "France", "Belgium", "Greece", "Denmark", "China"];
 
@@ -33,7 +34,7 @@ var mPopcultureA = ["Princess Melody", "Aurora (Sleeping Beauty)", "9", "Ringo S
 
 var hPopcultureQ = ["What is the real name of Joe Exotic (Tiger King)?", "How many kids does Angelina Jolie have?", "What year did Disneyland open?", "What is the name of Wendy's dog in Peter Pan?", "How many brothers does Prince Hans of the Southern Isles have in Frozen?", "What was the first music video played on MTV?", "What was Freddie Mercury's original name?", "Which movie (adjusted for inflation) is the highest-grossing movie to date?", "What was the first Pixar movie", "What year was Britney Spears' album Oops!… I Did It Again released?"];
 var hPopcultureA = ["Joseph Allen Maldonado-Passage", "6", "1955", "Nana", "12", "Video Killed the Radio Star", "Frederick Bulsara", "Gone with the Wind", "Toy Story", "2000"];
-// hvis spørgsmålet om den bedste lærer skal virke, skal svaret være navnene på alle lærerne
+
 var eRandomQ = ["How many hours in a day?", "What is the atomic symbol for iron?", "Name the actor who portrayed Tony Stark (Iron Man) in the MCU", "What keeps going up, but never goes down?", "You own it, but other people use it more than you. What is it?", "What color is grass typically?", "Which 'gymnasie' is the best 'gymnasie'?", "How many seasons of Game of Thrones were made?", "Name a Disney Princess", "How many minutes in an hour?"];
 var eRandomA = ["24", "Fe", "Robort Downey Jr.", "Your age", "Your name", "Green", "Sukkertoppen gymnasie", "8", "Snow White, Cinderella, Aurora, Ariel, Belle, Jasmine, Pocahontas, Mulan, Tiana, Rapunzel, Merida, and Moana (and probably more tbh)", "60"];
 
