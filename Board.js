@@ -102,7 +102,7 @@ function setup() {
 }
 
 function drawBoard() {
-
+    background("#1982C4");//blå
     for (let i = 0; i < 20; i++) {//Der tegnes 20 felter
         color = i % 4;//"Resten" når der divideres med 4. Angiver hvilket felt brikken rykker til
         push();//Det er kun det ene felt der bliver farvet
@@ -166,15 +166,17 @@ class Player {
         this.giveQuestion()
     }
     die() {
-        diceBtn.hide();
-        push();
-        noStroke();
-        fill("#1982C4");
-        rect(90, 30, 20, 80);
-        pop();
-        this.dieMoves = parseInt(random(1, 5));
-        this.move();
-        text(this.dieMoves, 90, 50);
+        if (gameOver === false) {
+            diceBtn.hide();
+            push();
+            noStroke();
+            fill("#1982C4");
+            rect(90, 30, 20, 80);
+            pop();
+            this.dieMoves = parseInt(random(1, 5));
+            this.move();
+            text(this.dieMoves, 90, 50);
+        }
 
 
         // the board is 20 tiles long, so when  we reach 20, the game is over 
@@ -186,6 +188,7 @@ class Player {
             answerBtn.hide();
             answerInput.hide();
             gameOver = true;
+            clearInterval(countDown);
 
         }
 
@@ -193,6 +196,8 @@ class Player {
     giveQuestion() {
         if (gameOver === false) {
             answerInput.value("");
+
+            drawBoard();
             push();
             fill(this.playercolor);
             rect(width / 2, 120, 1000, 350);
@@ -201,6 +206,7 @@ class Player {
             fill(colors[this.moves % 4]);
             rect(width / 2, 120, 900, 330);
             pop();
+
             if (this.moves % 4 === 0) {
                 // math 
                 findCategory(mathsQ, mathsA);
@@ -223,18 +229,20 @@ class Player {
             text(category[question], width / 2, 120);
             answerInput.show();
             answerBtn.show();
-
             // countdown for questions
-            time = 12000;
+            time = 60000;
+            rect(width / 2, 90, 30, 30)
+            text((time / 1000), width / 2, 90); // to show time at the beginning 
+
             countDown = setInterval(function () {
                 time -= 1000;
                 rect(width / 2, 90, 30, 30)
                 text((time / 1000), width / 2, 90);
+
                 if (time == 0) {
                     checkAnswer();
-                }}, 1000);
-
-
+                }
+            }, 1000);
 
 
             answerBtn.mousePressed(checkAnswer);
@@ -255,46 +263,48 @@ class Player {
             }
 
             function checkAnswer() {
-                clearInterval(countDown);
-                answerBtn.hide();
-                text(answer[question], width / 2, 200);
+                if (gameOver === false) {
+                    clearInterval(countDown);
+                    answerBtn.hide();
+                    text(answer[question], width / 2, 200);
 
-                if (answer[question].toLowerCase().match(answerInput.value().toLowerCase()) && answerInput.value().toLowerCase() != "") { // det sidste for at man ikke får korrekt ved ikke at skrive noget
-                    // if answer is correct
-                    text("Correct, you can try again!", width / 2, 230);
-                    removeQuestion();
-                    diceBtn.show();
-                    console.log("the answer was correct");
+                    if (answer[question].toLowerCase().match(answerInput.value().toLowerCase()) && answerInput.value().toLowerCase() != "") { // det sidste for at man ikke får korrekt ved ikke at skrive noget
+                        // if answer is correct
+                        text("Correct, you can try again!", width / 2, 230);
+                        removeQuestion();
+                        diceBtn.show();
+                        console.log("the answer was correct");
 
 
-                } else {
-                    text("incorrect, next player", width / 2, 230);
-                    removeQuestion();
-                    turns += 1;
-                    diceBtn.show();
-                }
-
-                function removeQuestion() {
-
-                    if (category == mathsQ) {
-                        mathsQ.splice(question, 1);
-                        mathsA.splice(question, 1);
+                    } else {
+                        text("incorrect, next player", width / 2, 230);
+                        removeQuestion();
+                        turns += 1;
+                        diceBtn.show();
                     }
-                    if (category == randomQ) {
-                        randomQ.splice(question, 1);
-                        randomA.splice(question, 1);
-                    }
-                    if (category == geographyQ) {
-                        geographyQ.splice(question, 1);
-                        geographyA.splice(question, 1);
-                    }
-                    if (category == popcultureQ) {
-                        popcultureQ.splice(question, 1);
-                        popcultureA.splice(question, 1);
-                    }
-                    console.log("math: " + mathsQ.length + " rdm " + randomQ.length + " geo " + geographyQ + " pop " + popcultureQ);
-                    answer = ""; // ellers skriver den flere svar oven i hinanden. 
 
+                    function removeQuestion() {
+
+                        if (category == mathsQ) {
+                            mathsQ.splice(question, 1);
+                            mathsA.splice(question, 1);
+                        }
+                        if (category == randomQ) {
+                            randomQ.splice(question, 1);
+                            randomA.splice(question, 1);
+                        }
+                        if (category == geographyQ) {
+                            geographyQ.splice(question, 1);
+                            geographyA.splice(question, 1);
+                        }
+                        if (category == popcultureQ) {
+                            popcultureQ.splice(question, 1);
+                            popcultureA.splice(question, 1);
+                        }
+                        console.log("math: " + mathsQ.length + " rdm " + randomQ.length + " geo " + geographyQ + " pop " + popcultureQ);
+                        answer = ""; // ellers skriver den flere svar oven i hinanden. 
+
+                    }
                 }
 
 
