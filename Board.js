@@ -225,7 +225,7 @@ class Player {
             answerBtn.show();
 
             // countdown for questions
-            time = 12000;
+            time = 60000;
             countDown = setInterval(function () {
                 time -= 1000;
                 rect(width / 2, 90, 30, 30)
