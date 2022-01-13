@@ -16,36 +16,38 @@ let playerSelect;
 let difficultySelect;
 let answerInput;
 let question;
+let time;
+let countDown;
 
 
 function setup() {
-    rectMode(CENTER); 
+    rectMode(CENTER);
     textAlign(CENTER, CENTER);
     createCanvas(windowWidth, windowHeight);//Canvas tilpasses til computeren
     background("#1982C4");//blå
     strokeWeight(2);
     textSize(20);
     gameOver = false;
-    
+
 
     diceBtn = createButton('Dice').style('background-color', "white");
-    answerBtn = createButton('Answer').style('background-color', "white").size(70, 20).position((width / 2)-35, 165);
-    startGameBtn = createButton('startgame').style('background-color', "white").size(100, 40).position((width / 2)- 50, height / 2);
+    answerBtn = createButton('Answer').style('background-color', "white").size(70, 20).position((width / 2) - 35, 165);
+    startGameBtn = createButton('startgame').style('background-color', "white").size(100, 40).position((width / 2) - 50, height / 2);
     playerSelect = createSelect().style('background-color', "white").size(40, 20);
-    answerInput = createInput().size(140).position((width / 2)-70, 140);
-    
+    answerInput = createInput().size(140).position((width / 2) - 70, 140);
+
     playerSelect.option('2');
     playerSelect.option('3');
     playerSelect.option('4');
     playerSelect.option('5');
-    playerSelect.position((width / 2)-20, 190);
+    playerSelect.position((width / 2) - 20, 190);
 
-    
+
     difficultySelect = createSelect().style('background-color', "white").size(70, 20);
     difficultySelect.option('easy');
     difficultySelect.option('medium');
     difficultySelect.option('hard');
-    difficultySelect.position((width / 2)-35, 240);
+    difficultySelect.position((width / 2) - 35, 240);
 
 
 
@@ -55,7 +57,7 @@ function setup() {
     diceBtn.hide();
     answerBtn.hide();
     answerInput.hide();
-    
+
     diceBtn.size(70, 70).position(10, 10);
     diceBtn.mousePressed(diceRoll);
 
@@ -83,7 +85,7 @@ function setup() {
 
 
 
-    
+
     function diceRoll() {
 
         for (let i = 0; i < players.length; i++) {
@@ -119,22 +121,22 @@ function drawBoard() {
 }
 
 function populateCategory() {
-    if (difficultySelect.value() === 'easy'){        
+    if (difficultySelect.value() === 'easy') {
         var difficulty = "e";
-    }if (difficultySelect.value() === 'medium'){        
+    } if (difficultySelect.value() === 'medium') {
         var difficulty = "m";
     }
-    if (difficultySelect.value() === 'hard'){        
+    if (difficultySelect.value() === 'hard') {
         var difficulty = "h";
     }
-    mathsQ = eval(difficulty+ "MathsQ"); // eval eksekvere en string
-    mathsA = eval(difficulty +"MathsA"); // fordi man ikke bare kan ligge fx e til MathsQ.
-    popcultureQ = eval(difficulty +"PopcultureQ");
-    popcultureA = eval(difficulty +"PopcultureA");
-    geographyQ =eval(difficulty +"GeographyQ");
-    geographyA =eval(difficulty +"GeographyA");
-    randomQ =eval(difficulty +"RandomQ");
-    randomA =eval(difficulty +"RandomA");
+    mathsQ = eval(difficulty + "MathsQ"); // eval eksekvere en string
+    mathsA = eval(difficulty + "MathsA"); // fordi man ikke bare kan ligge fx e til MathsQ.
+    popcultureQ = eval(difficulty + "PopcultureQ");
+    popcultureA = eval(difficulty + "PopcultureA");
+    geographyQ = eval(difficulty + "GeographyQ");
+    geographyA = eval(difficulty + "GeographyA");
+    randomQ = eval(difficulty + "RandomQ");
+    randomA = eval(difficulty + "RandomA");
 
 }
 
@@ -222,16 +224,28 @@ class Player {
             answerInput.show();
             answerBtn.show();
 
+            // countdown for questions
+            time = 12000;
+            countDown = setInterval(function () {
+                time -= 1000;
+                rect(width / 2, 90, 30, 30)
+                text((time / 1000), width / 2, 90);
+                if (time == 0) {
+                    checkAnswer();
+                }}, 1000);
+
+
 
 
             answerBtn.mousePressed(checkAnswer);
             document.addEventListener("keyup", function (event) {
-                if (answer != ""){
-                if (keyCode == 13) {
-                    checkAnswer();
-                    console.log("keycode is: " + keyCode);
+                if (answer != "") {
+                    if (keyCode == 13) {
+                        checkAnswer();
+
+                        console.log("keycode is: " + keyCode);
+                    }
                 }
-            }
 
             });
             function findCategory(queArr, ansArr) {
@@ -241,6 +255,7 @@ class Player {
             }
 
             function checkAnswer() {
+                clearInterval(countDown);
                 answerBtn.hide();
                 text(answer[question], width / 2, 200);
 
