@@ -304,34 +304,12 @@ class Player {
                     text(answer[question], width / 2, 200);
                     let playerAnswer = answerInput.value().toLowerCase();
                     let correctAnswer = answer[question].toLowerCase();
-                    let misMatches = 0;
-                    let allowedMistakes = 2;
-                    let resultOk = false;
                     
-                    if (correctAnswer.includes('Ariel' || 'Vietnam')) {
-                        if (correctAnswer.includes(playerAnswer)) {
-                            resultOk = true;
-                        }
-                    }
-                    else {
-                        if (answerInput.value().match(/[0-9]/)){
-                            allowedMistakes = 0;
-                        }
-                        for (let i = 0; i < Math.max(playerAnswer.length, correctAnswer.length); i++) {
-                            if (correctAnswer[i] != playerAnswer[i]){
-                                misMatches++;
-                            }
-                        }
-                        if (misMatches <= allowedMistakes && playerAnswer.length >= correctAnswer.length * 0.8) {
-                            resultOk = true;
-                        }
-                    }
-                    if (resultOk) {
-                        
-                            text("Correct, you can try again!", width / 2, 230);
+
+                if (correctAnswer.match(playerAnswer) && playerAnswer.length >= correctAnswer.length * 0.8 || playerAnswer.length >= 4){
+                    text("Correct, you can try again!", width / 2, 230);
                             removeQuestion();
                             diceBtn.show();
-                            console.log("the answer was correct");
                         
                    
                     } else {
@@ -339,7 +317,7 @@ class Player {
                     removeQuestion();
                     turns += 1;
                     diceBtn.show();
-                }
+                    }
 
                 function removeQuestion() {
 
