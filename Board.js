@@ -27,9 +27,8 @@ function setup() {
     background("#1982C4");//blå
     strokeWeight(2);
     textSize(20);
+
     gameOver = false;
-
-
     diceBtn = createButton('Dice').style('background-color', "white");
     answerBtn = createButton('Answer').style('background-color', "white").size(70, 20).position((width / 2) - 35, 165);
     startGameBtn = createButton('startgame').style('background-color', "white").size(100, 40).position((width / 2) - 50, height / 2);
@@ -104,18 +103,17 @@ function setup() {
 function drawBoard() {
     background("#1982C4");//blå
     for (let i = 0; i < 20; i++) {//Der tegnes 20 felter
-        color = i % 4;//"Resten" når der divideres med 4. Angiver hvilket felt brikken rykker til
-        push();//Det er kun det ene felt der bliver farvet
+        color = i % 4;
+        push();
         fill(colors[color]);
-        //color angiver hvilket nummer i arrayet vi skal bruge (altså hvilken farve vi fylder med)
-        //Husk at color ovenover er defineret til at være lig med i%4
-        rect(width / 20 * i + 32, height, 50, 450);//Tegner felterne
-        squareX.push(width / 20 * i + 32);//
-        pop();//Ender push
+
+        rect(width / 20 * i + 32, height, 50, 450);
+        squareX.push(width / 20 * i + 32);
+        pop();
     }
 
-    for (let i = 0; i < players.length; i++) {//Loopet kører det antal gange som der er players.
-        players[i].display();//Henviser til metoden display som er længere nede
+    for (let i = 0; i < players.length; i++) {
+        players[i].display();
 
     }
 }
@@ -129,8 +127,8 @@ function populateCategory() {
     if (difficultySelect.value() === 'hard') {
         var difficulty = "h";
     }
-    mathsQ = eval(difficulty + "MathsQ"); // eval eksekvere en string
-    mathsA = eval(difficulty + "MathsA"); // fordi man ikke bare kan ligge fx e til MathsQ.
+    mathsQ = eval(difficulty + "MathsQ"); // eval eksekverer en string
+    mathsA = eval(difficulty + "MathsA"); // fordi man ikke bare kan ligge e til MathsQ.
     popcultureQ = eval(difficulty + "PopcultureQ");
     popcultureA = eval(difficulty + "PopcultureA");
     geographyQ = eval(difficulty + "GeographyQ");
@@ -267,55 +265,78 @@ class Player {
                     clearInterval(countDown);
                     answerBtn.hide();
                     text(answer[question], width / 2, 200);
-
-                    if (answer[question].toLowerCase().match(answerInput.value().toLowerCase()) && answerInput.value().toLowerCase() != "") { // det sidste for at man ikke får korrekt ved ikke at skrive noget
-                        // if answer is correct
-                        text("Correct, you can try again!", width / 2, 230);
-                        removeQuestion();
-                        diceBtn.show();
-                        console.log("the answer was correct");
-
-
+                    let playerAnswer = answerInput.value().toLowerCase();
+                    let correctAnswer = answer[question].toLowerCase();
+                    let misMatches = 0;
+                    let allowedMistakes = 2;
+                    let resultOk = false;
+                    
+                    if (correctAnswer.includes('Ariel' || 'Vietnam')) {
+                        if (correctAnswer.includes(playerAnswer)) {
+                            resultOk = true;
+                        }
+                    }
+                    else {
+                        if (answerInput.value().match(/[0-9]/)){
+                            allowedMistakes = 0;
+                        }
+                        for (let i = 0; i < Math.max(playerAnswer.length, correctAnswer.length); i++) {
+                            if (correctAnswer[i] != playerAnswer[i]){
+                                misMatches++;
+                            }
+                        }
+                        if (misMatches <= allowedMistakes && playerAnswer.length >= correctAnswer.length * 0.8) {
+                            resultOk = true;
+                        }
+                    }
+                    if (resultOk) {
+                        
+                            text("Correct, you can try again!", width / 2, 230);
+                            removeQuestion();
+                            diceBtn.show();
+                            console.log("the answer was correct");
+                        
+                   
                     } else {
-                        text("incorrect, next player", width / 2, 230);
-                        removeQuestion();
-                        turns += 1;
-                        diceBtn.show();
-                    }
-
-                    function removeQuestion() {
-
-                        if (category == mathsQ) {
-                            mathsQ.splice(question, 1);
-                            mathsA.splice(question, 1);
-                        }
-                        if (category == randomQ) {
-                            randomQ.splice(question, 1);
-                            randomA.splice(question, 1);
-                        }
-                        if (category == geographyQ) {
-                            geographyQ.splice(question, 1);
-                            geographyA.splice(question, 1);
-                        }
-                        if (category == popcultureQ) {
-                            popcultureQ.splice(question, 1);
-                            popcultureA.splice(question, 1);
-                        }
-                        console.log("math: " + mathsQ.length + " rdm " + randomQ.length + " geo " + geographyQ + " pop " + popcultureQ);
-                        answer = ""; // ellers skriver den flere svar oven i hinanden. 
-
-                    }
+                    text("incorrect, next player", width / 2, 230);
+                    removeQuestion();
+                    turns += 1;
+                    diceBtn.show();
                 }
 
+                function removeQuestion() {
 
+                    if (category == mathsQ) {
+                        mathsQ.splice(question, 1);
+                        mathsA.splice(question, 1);
+                    }
+                    if (category == randomQ) {
+                        randomQ.splice(question, 1);
+                        randomA.splice(question, 1);
+                    }
+                    if (category == geographyQ) {
+                        geographyQ.splice(question, 1);
+                        geographyA.splice(question, 1);
+                    }
+                    if (category == popcultureQ) {
+                        popcultureQ.splice(question, 1);
+                        popcultureA.splice(question, 1);
+                    }
+                    console.log("math: " + mathsQ.length + " rdm " + randomQ.length + " geo " + geographyQ + " pop " + popcultureQ);
+                    answer = ""; // ellers skriver den flere svar oven i hinanden. 
+
+                }
             }
 
 
-
-
-
         }
+
+
+
+
+
     }
+}
 
 }
 
