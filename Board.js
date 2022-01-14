@@ -1,4 +1,3 @@
-//Variabler oprettes
 let players = [];
 let squareX = [];
 //rød, gul, grøn, lilla
@@ -23,7 +22,7 @@ let countDown;
 function setup() {
     rectMode(CENTER);
     textAlign(CENTER, CENTER);
-    createCanvas(windowWidth, windowHeight);//Canvas tilpasses til computeren
+    createCanvas(windowWidth, windowHeight);
     background("#1982C4");//blå
     strokeWeight(2);
     textSize(20);
@@ -31,7 +30,7 @@ function setup() {
     gameOver = false;
     diceBtn = createButton('Dice').style('background-color', "white");
     answerBtn = createButton('Answer').style('background-color', "white").size(70, 20).position((width / 2) - 35, 165);
-    startGameBtn = createButton('start game').style('background-color', "#FFCA3A").size(200, 80).position((width / 2) - 100, height / 2);
+    startGameBtn = createButton('Start Game').style('background-color', "#FFCA3A").style('font-size', '30px').size(200, 80).position((width / 2) - 100, height / 2);
     playerSelect = createSelect().style('background-color', "white").size(40, 20);
     answerInput = createInput().size(140).position((width / 2) - 70, 140);
     rulesBtn = createButton('?').style('background-color', "white").size(20, 20).position(width - 40, 20);
@@ -54,7 +53,7 @@ function setup() {
 
 
 
-    turns = 0;//Der startes med ikke at være foretaget ture
+    turns = 0;
     diceBtn.hide();
     answerBtn.hide();
     answerInput.hide();
@@ -65,7 +64,7 @@ function setup() {
 
     document.addEventListener("keyup", function (event) {
         if (diceBtn.style('display') == 'block') { // så man ikke kan trykke videre rundt om et spørgsmål
-            if (keyCode === RIGHT_ARROW) { // piletast fordi et bogstav ville udløses når man skriver svar
+            if (keyCode === RIGHT_ARROW) {
                 diceRoll();
             }
         }
@@ -212,17 +211,15 @@ class Player {
         }
 
 
-        // the board is 20 tiles long, so when  we reach 20, the game is over 
+
         if (this.moves >= 20) {
-            console.log("you won!!!");
-            background("#1982C4");
+            background("#1982C4"); //blå
             text("The Game is over. " + this.playername + " is the winner!", width / 2, height / 2);
             diceBtn.hide();
             answerBtn.hide();
             answerInput.hide();
             gameOver = true;
             clearInterval(countDown);
-
         }
 
     }
@@ -241,37 +238,32 @@ class Player {
             pop();
 
             if (this.moves % 4 === 0) {
-                // math 
                 findCategory(mathsQ, mathsA);
             }
             if (this.moves % 4 === 1) {
-                // random
                 findCategory(randomQ, randomA);
             }
             if (this.moves % 4 === 2) {
-                // geo
                 findCategory(geographyQ, geographyA);
             }
             if (this.moves % 4 === 3) {
-                // popculture
                 findCategory(popcultureQ, popcultureA);
             }
 
-            console.log("question number: " + question);
-            console.log("question: " + category[question]);
+
             text(category[question], width / 2, 120);
             answerInput.show();
             answerBtn.show();
-            // countdown for questions
+
+
             time = 60000;
             rect(width / 2, 90, 30, 30)
-            text((time / 1000), width / 2, 90); // to show time at the beginning 
+            text((time / 1000), width / 2, 90);
 
             countDown = setInterval(function () {
                 time -= 1000;
                 rect(width / 2, 90, 30, 30)
                 text((time / 1000), width / 2, 90);
-
                 if (time == 0) {
                     checkAnswer();
                 }
@@ -285,8 +277,6 @@ class Player {
                 if (answer != "") {
                     if (keyCode == 13) {
                         checkAnswer();
-
-                        console.log("keycode is: " + keyCode);
                     }
                 }
 
@@ -304,54 +294,54 @@ class Player {
                     text(answer[question], width / 2, 200);
                     let playerAnswer = answerInput.value().toLowerCase();
                     let correctAnswer = answer[question].toLowerCase();
-                    
 
-                if (correctAnswer.match(playerAnswer) && playerAnswer.length >= correctAnswer.length * 0.8 || playerAnswer.length >= 4){
-                    text("Correct, you can try again!", width / 2, 230);
-                            removeQuestion();
-                            diceBtn.show();
-                        
-                   
+
+                    if (correctAnswer.match(playerAnswer) && playerAnswer.length >= correctAnswer.length * 0.8 || playerAnswer.length >= 4) {
+                        text("Correct, you can try again!", width / 2, 230);
+                        removeQuestion();
+                        diceBtn.show();
+
+
                     } else {
-                    text("incorrect, next player", width / 2, 230);
-                    removeQuestion();
-                    turns += 1;
-                    diceBtn.show();
+                        text("incorrect, next player", width / 2, 230);
+                        removeQuestion();
+                        turns += 1;
+                        diceBtn.show();
                     }
 
-                function removeQuestion() {
+                    function removeQuestion() {
 
-                    if (category == mathsQ) {
-                        mathsQ.splice(question, 1);
-                        mathsA.splice(question, 1);
-                    }
-                    if (category == randomQ) {
-                        randomQ.splice(question, 1);
-                        randomA.splice(question, 1);
-                    }
-                    if (category == geographyQ) {
-                        geographyQ.splice(question, 1);
-                        geographyA.splice(question, 1);
-                    }
-                    if (category == popcultureQ) {
-                        popcultureQ.splice(question, 1);
-                        popcultureA.splice(question, 1);
-                    }
-                    console.log("math: " + mathsQ.length + " rdm " + randomQ.length + " geo " + geographyQ + " pop " + popcultureQ);
-                    answer = ""; // ellers skriver den flere svar oven i hinanden. 
+                        if (category == mathsQ) {
+                            mathsQ.splice(question, 1);
+                            mathsA.splice(question, 1);
+                        }
+                        if (category == randomQ) {
+                            randomQ.splice(question, 1);
+                            randomA.splice(question, 1);
+                        }
+                        if (category == geographyQ) {
+                            geographyQ.splice(question, 1);
+                            geographyA.splice(question, 1);
+                        }
+                        if (category == popcultureQ) {
+                            popcultureQ.splice(question, 1);
+                            popcultureA.splice(question, 1);
+                        }
 
+                        answer = "";
+
+                    }
                 }
+
+
             }
 
 
+
+
+
         }
-
-
-
-
-
     }
-}
 
 }
 
