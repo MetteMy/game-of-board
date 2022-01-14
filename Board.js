@@ -32,9 +32,11 @@ function setup() {
 
     diceBtn = createButton('Dice').style('background-color', "white");
     answerBtn = createButton('Answer').style('background-color', "white").size(70, 20).position((width / 2) - 35, 165);
-    startGameBtn = createButton('startgame').style('background-color', "white").size(100, 40).position((width / 2) - 50, height / 2);
+    startGameBtn = createButton('start game').style('background-color', "#FFCA3A").size(200, 80).position((width / 2) - 100, height / 2);
     playerSelect = createSelect().style('background-color', "white").size(40, 20);
     answerInput = createInput().size(140).position((width / 2) - 70, 140);
+    rulesBtn = createButton('?').style('background-color', "white").size(20, 20).position(width - 40, 20);
+    closeRulesBtn = createButton('close').style('background-color', "#FFCA3A").size(50, 25).position(width / 2 - 25, 450);
 
     playerSelect.option('2');
     playerSelect.option('3');
@@ -57,6 +59,7 @@ function setup() {
     diceBtn.hide();
     answerBtn.hide();
     answerInput.hide();
+    closeRulesBtn.hide();
 
     diceBtn.size(70, 70).position(10, 10);
     diceBtn.mousePressed(diceRoll);
@@ -68,11 +71,43 @@ function setup() {
             }
         }
     });
+
+    rulesBtn.mousePressed(function () {
+        playerSelect.hide();
+        difficultySelect.hide();
+        startGameBtn.hide();
+        diceBtn.hide();
+        closeRulesBtn.show();
+        rulesBtn.hide();
+
+        rect(width / 2, height / 2 + 10, 1000, 410);
+        text("The rules", width / 2, 125);
+        text("Player one rolls the dice first. If player one answers correctly they get another turn.", width / 2, 180);
+        text("A players turn ends when they get a question wrong, or if the timer runs out before they answer the question.", width / 2, 210);
+        text("Use right arrow to roll dice or click on the dice button", width / 2, 240);
+        text("Use enter to check your answer or click on the answer button", width / 2, 270);
+        text("Players start by choosing amount of players and difficulty.", width / 2, 300);
+        text("Then starting the game by pressing the 'start game' button.", width / 2, 330);
+        text("When you roll the dice you move the amount you roll.", width / 2, 360);
+        text("The color you land on corresponds to the type of question you get.", width / 2, 390);
+        text("Yellow = Random, Green = Geography, Purple = Pop Culture, Red = Maths", width / 2, 420);
+    })
+
+    closeRulesBtn.mousePressed(function () {
+        background("#1982C4");//blå
+        playerSelect.show();
+        difficultySelect.show();
+        startGameBtn.show();
+        rulesBtn.show();
+        closeRulesBtn.hide();
+    })
+
     startGameBtn.mousePressed(function () {
         playerSelect.hide();
         difficultySelect.hide();
         startGameBtn.hide();
         diceBtn.show();
+        rulesBtn.hide();
         drawBoard();
 
         for (let i = 0; i < playerSelect.value(); i++) {
@@ -232,7 +267,8 @@ class Player {
                 text((time / 1000), width / 2, 90);
                 if (time == 0) {
                     checkAnswer();
-                }}, 1000);
+                }
+            }, 1000);
 
 
 
